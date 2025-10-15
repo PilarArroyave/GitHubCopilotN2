@@ -4,6 +4,7 @@ import com.sura.auth.dto.AuthResponseDto;
 import com.sura.auth.dto.LoginDto;
 import com.sura.auth.dto.UserRegistrationDto;
 import com.sura.auth.exception.InvalidCredentialsException;
+import com.sura.auth.exception.UserNotFoundException;
 import com.sura.auth.exception.UserRegistrationException;
 import com.sura.auth.model.User;
 import com.sura.auth.repository.UserRepository;
@@ -53,7 +54,7 @@ public class UserService {
         // Verificar si el usuario ya existe
         if (userRepository.existsByUsername(registrationDto.getUsername())) {
             logger.warn("Intento de registro con nombre de usuario existente: {}", registrationDto.getUsername());
-            throw new UserRegistrationException("El nombre de usuario ya existe");
+            throw new UserRegistrationException("Nombre de usuario ya registrado");
         }
 
         if (userRepository.existsByEmail(registrationDto.getEmail())) {
@@ -75,7 +76,7 @@ public class UserService {
         // Generar token
         String token = jwtService.generateToken(user.getUsername());
 
-        return new AuthResponseDto(token, user.getUsername(), "Usuario registrado exitosamente");
+        return new AuthResponseDto(token, user.getUsername(), "Registro exitoso");
     }
 
     /**
@@ -87,6 +88,12 @@ public class UserService {
      */
     public AuthResponseDto loginUser(LoginDto loginDto) {
         logger.info("Intento de login para usuario: {}", loginDto.getUsername());
+
+        // Verificar si el usuario existe
+        if (!userRepository.existsByUsername(loginDto.getUsername())) {
+            logger.warn("Intento de login con usuario inexistente: {}", loginDto.getUsername());
+            throw new UserNotFoundException("Usuario no encontrado");
+        }
 
         try {
             // Autenticar usuario
