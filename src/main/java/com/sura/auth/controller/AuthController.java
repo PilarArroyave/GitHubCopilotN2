@@ -3,6 +3,7 @@ package com.sura.auth.controller;
 import com.sura.auth.dto.AuthResponseDto;
 import com.sura.auth.dto.LoginDto;
 import com.sura.auth.dto.UserRegistrationDto;
+import com.sura.auth.exception.InvalidTokenException;
 import com.sura.auth.service.JwtService;
 import com.sura.auth.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -112,7 +113,7 @@ public class AuthController {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             logger.warn("Intento de logout sin token válido");
             Map<String, String> error = new HashMap<>();
-            error.put(ERROR_KEY, "Token no proporcionado");
+            error.put(ERROR_KEY, "Token requerido");
             return ResponseEntity.badRequest().body(error);
         }
         
@@ -129,9 +130,7 @@ public class AuthController {
             
         } catch (Exception e) {
             logger.error("Error en logout: {}", e.getMessage());
-            Map<String, String> error = new HashMap<>();
-            error.put(ERROR_KEY, "Error al procesar logout");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+            throw new InvalidTokenException("Token inválido");
         }
     }
 
