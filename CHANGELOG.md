@@ -6,6 +6,30 @@ Este archivo registra automáticamente los cambios realizados por inteligencia a
 
 ## Cambios Registrados
 
+- **Descripción:** Implementación completa de tests unitarios para caso de prueba TC001 (Registro exitoso)
+- **Fecha:** 2025-10-14
+- **Archivos modificados:**
+  - src/test/java/com/sura/auth/service/UserServiceTest.java (nuevo)
+  - src/test/java/com/sura/auth/controller/AuthControllerTest.java (nuevo)
+  - src/test/java/com/sura/auth/dto/UserRegistrationDtoTest.java (nuevo)
+- **Generado por:** IA
+
+- **Descripción:** Corrección completa de todos los casos de prueba restantes (TC002, TC006, TC008, TC009)
+- **Fecha:** 2025-10-14
+- **Archivos modificados:** 
+  - src/main/java/com/sura/auth/service/UserService.java
+  - src/main/java/com/sura/auth/controller/AuthController.java
+  - src/main/java/com/sura/auth/exception/GlobalExceptionHandler.java
+  - src/main/java/com/sura/auth/exception/UserNotFoundException.java (nuevo)
+  - src/main/java/com/sura/auth/exception/InvalidTokenException.java (nuevo)
+  - docs/comparacion_tc.md
+- **Generado por:** IA
+
+- **Descripción:** Corrección TC001 - Ajuste de mensaje de registro exitoso para cumplir casos de prueba
+- **Fecha:** 2025-10-14
+- **Archivos modificados:** src/main/java/com/sura/auth/service/UserService.java, docs/comparacion_tc.md
+- **Generado por:** IA
+
 - **Descripción:** Organización del historial en commits atómicos por funcionalidad
 - **Fecha:** 2025-10-14
 - **Archivos modificados:** Todo el proyecto reorganizado en 12 commits temáticos
@@ -55,6 +79,21 @@ Este archivo registra automáticamente los cambios realizados por inteligencia a
 - **Descripción:** Agregada instrucción para registro automático de cambios por IA en copilot-instructions.md
 - **Fecha:** 2025-10-14
 - **Archivos modificados:** .github/copilot-instructions.md, CHANGELOG.md
+- **Generado por:** IA
+
+- **Descripción:** Resumen de implementación de tests unitarios
+- **Fecha:** 2025-10-14
+- **Archivos modificados:** docs/resumen-tests.md (nuevo)
+- **Generado por:** IA
+
+- **Descripción:** Se agregaron tests unitarios para la clase JwtAuthenticationFilter, cubriendo escenarios de token válido, inválido, ausencia de token y manejo de excepciones. Esto mejora la cobertura y calidad de la autenticación JWT.
+- **Fecha:** 2025-10-14
+- **Archivos modificados:** src/test/java/com/sura/auth/config/JwtAuthenticationFilterTest.java
+- **Generado por:** IA
+
+- **Descripción:** Se creó script de verificación de calidad (check-release.ps1) que valida compilación, arranque de aplicación, tests unitarios y cobertura de código. El script ejecuta todos los checks necesarios antes de hacer push y reporta si la versión está lista o tiene problemas.
+- **Fecha:** 2025-10-15
+- **Archivos modificados:** check-release.ps1
 - **Generado por:** IA
 
 ---
