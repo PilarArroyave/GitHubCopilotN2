@@ -6,6 +6,11 @@ Este archivo registra automáticamente los cambios realizados por inteligencia a
 
 ## Cambios Registrados
 
+- **Descripción:** Organización del historial en commits atómicos por funcionalidad
+- **Fecha:** 2025-10-14
+- **Archivos modificados:** Todo el proyecto reorganizado en 12 commits temáticos
+- **Generado por:** IA
+
 - **Descripción:** Configuración de Swagger para header Authorization Bearer en endpoint logout
 - **Fecha:** 2025-10-14
 - **Archivos modificados:** src/main/java/com/sura/auth/controller/AuthController.java, src/main/java/com/sura/auth/config/SwaggerConfig.java
