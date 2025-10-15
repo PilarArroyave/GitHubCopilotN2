@@ -35,7 +35,7 @@ public class GlobalExceptionHandler {
         logger.warn("Error de registro: {}", ex.getMessage());
         Map<String, String> error = new HashMap<>();
         error.put(ERROR_KEY, ex.getMessage());
-        return ResponseEntity.badRequest().body(error);
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
     }
 
     /**
@@ -47,6 +47,34 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(InvalidCredentialsException.class)
     public ResponseEntity<Map<String, String>> handleInvalidCredentialsException(InvalidCredentialsException ex) {
         logger.warn("Error de autenticación: {}", ex.getMessage());
+        Map<String, String> error = new HashMap<>();
+        error.put(ERROR_KEY, ex.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
+    }
+
+    /**
+     * Maneja excepciones de usuario no encontrado
+     * 
+     * @param ex excepción de usuario no encontrado
+     * @return respuesta de error
+     */
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleUserNotFoundException(UserNotFoundException ex) {
+        logger.warn("Usuario no encontrado: {}", ex.getMessage());
+        Map<String, String> error = new HashMap<>();
+        error.put(ERROR_KEY, ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+    /**
+     * Maneja excepciones de token inválido
+     * 
+     * @param ex excepción de token inválido
+     * @return respuesta de error
+     */
+    @ExceptionHandler(InvalidTokenException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidTokenException(InvalidTokenException ex) {
+        logger.warn("Token inválido: {}", ex.getMessage());
         Map<String, String> error = new HashMap<>();
         error.put(ERROR_KEY, ex.getMessage());
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
